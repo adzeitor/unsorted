@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  title: MyString
+  description: MyText
+  sprint: one
+  next_board: one
+
+two:
+  title: MyString
+  description: MyText
+  sprint: two
+  next_board: two

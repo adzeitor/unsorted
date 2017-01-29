@@ -1,0 +1,104 @@
+<p id="notice"><%= notice %></p>
+
+<h1><%= @sprint.title %></h1>
+
+<p>
+  <strong>Description:</strong>
+  <%= @sprint.description %>
+</p>
+
+
+<p>
+  <strong>Duration remaining:</strong>
+  <div class="progress">
+  <div class="progress-bar bg-info" role="progressbar" style="width: <%= @sprint_complete_percent %>%" aria-valuenow="<%= @sprint_complete_percent %>" aria-valuemin="0" aria-valuemax="100"></div>
+</div>
+   <%= @sprint_remaining %> / <%= @sprint_duration %> hours
+</p>
+
+<div class="card text-center" style="margin-top:40px;">
+  <div class="card-header">
+    <strong>BACKLOG</strong>
+  </div>
+  <ul class="list-group list-group-flush">
+    <% @sprint.issues.backlog.each do |issue| %>
+      <li class="list-group-item">
+        <%= link_to "#{issue.title} (#{issue.duration_hours} hours)", issue %>
+        <div class="btn-group">
+
+          <button type="button" class="btn btn-danger dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Move
+            <span class="sr-only">Toggle Dropdown</span>
+          </button>
+          <div class="dropdown-menu">
+            <% @sprint.boards.each do |b| %>
+              <%= link_to b.title, move_to_board_issue_path(issue,{board_id:b}), method: :post, class: 'dropdown-item' %>
+            <% end %>
+          </div>
+        </div>
+
+        <%= link_to 'Complete', complete_issue_path(issue), method: :post, data: { confirm: 'Are you sure?' }, class: 'btn btn-success' %>
+      </li>
+    <% end %>
+  </ul>
+
+  <div class="card-footer text-muted">
+    2 days ago
+  </div>
+</div>
+
+
+<% @sprint.boards.each do |b| %>
+<div class="card text-center" style="margin-top:40px;">
+  <div class="card-header">
+    <%= b.title %>
+  </div>
+
+  <ul class="list-group list-group-flush">
+    <% b.issues.each do |issue| %>
+      <li class="list-group-item">
+        <%= link_to "#{issue.title} (#{issue.duration_hours} hours)", issue %>
+        <div class="btn-group">
+          <button type="button" class="btn btn-danger dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Move
+            <span class="sr-only">Toggle Dropdown</span>
+          </button>
+          <div class="dropdown-menu">
+            <% @sprint.boards.each do |b| %>
+              <%= link_to b.title, move_to_board_issue_path(issue,{board_id:b}), method: :post, class: 'dropdown-item' %>
+            <% end %>
+          </div>
+        </div>
+
+        <%= link_to 'Complete', complete_issue_path(issue), method: :post, data: { confirm: 'Are you sure?' }, class: 'btn btn-success' %>
+      </li>
+    <% end %>
+  </ul>
+
+
+  <div class="card-footer text-muted">
+    2 days ago
+  </div>
+</div>
+<% end %>
+
+<div class="card text-center" style="margin-top:40px;">
+  <div class="card-header">
+    <strong>DONE</strong>
+  </div>
+  <ul class="list-group list-group-flush">
+    <% @sprint.issues.completed.each do |issue| %>
+      <li class="list-group-item">
+        <%= link_to "#{issue.title} (#{issue.duration_hours} hours)", issue %>
+      </li>
+    <% end %>
+  </ul>
+
+  <div class="card-footer text-muted">
+    2 days ago
+  </div>
+</div>
+
+
+<%= link_to 'Edit', edit_sprint_path(@sprint) %> |
+<%= link_to 'Back', sprints_path %>
