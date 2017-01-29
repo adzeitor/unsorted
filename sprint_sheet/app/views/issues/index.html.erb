@@ -19,9 +19,16 @@
       <tr>
         <td><%= issue.title %></td>
         <td><%= issue.description %></td>
-        <td><%= issue.sprint.title %></td>
+        <td>
+          <% if issue.sprint %>
+            <%= issue.sprint.title %>
+          <% end %>
+        </td>
         <td><%= issue.board %></td>
-        <td><img height='128' src='<%= issue.assigned_to.avatar_url %>'></img></td>
+        <td>
+          <% if issue.assigned_to %>
+            <img height='128' src='<%= issue.assigned_to.avatar_url %>'></img></td>
+          <% end %>
         <td><%= link_to 'Show', issue %></td>
         <td><%= link_to 'Edit', edit_issue_path(issue) %></td>
         <td><%= link_to 'Destroy', issue, method: :delete, data: { confirm: 'Are you sure?' } %></td>

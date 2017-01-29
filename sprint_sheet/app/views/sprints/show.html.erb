@@ -1,19 +1,33 @@
 <p id="notice"><%= notice %></p>
 
 <h1><%= @sprint.title %></h1>
+<%= link_to 'Edit', edit_sprint_path(@sprint) %> |
 
 <p>
   <strong>Description:</strong>
   <%= @sprint.description %>
 </p>
 
+<p>
+  <strong>Created at:</strong>
+  <span data-toggle="tooltip" data-placement="top" title="<%= @sprint.created_at %>">
+    <%= distance_of_time_in_words_to_now(@sprint.created_at) %>
+  </span>
+</p>
 
 <p>
-  <strong>Duration remaining:</strong>
+  <strong>Due to:</strong>
+  <span data-toggle="tooltip" data-placement="top" title="<%= @sprint.due_to %>">
+    <%= distance_of_time_in_words_to_now(@sprint.due_to) %>
+  </span>
+</p>
+
+<p>
+
   <div class="progress">
   <div class="progress-bar bg-info" role="progressbar" style="width: <%= @sprint_complete_percent %>%" aria-valuenow="<%= @sprint_complete_percent %>" aria-valuemin="0" aria-valuemax="100"></div>
 </div>
-   <%= @sprint_remaining %> / <%= @sprint_duration %> hours
+   <strong>Duration remaining:</strong> <%= @sprint_remaining %> / <%= @sprint_duration %> hours
 </p>
 
 <div class="card text-center" style="margin-top:40px;">
@@ -43,7 +57,7 @@
   </ul>
 
   <div class="card-footer text-muted">
-    2 days ago
+
   </div>
 </div>
 
@@ -76,9 +90,11 @@
   </ul>
 
 
+  <% if b.issues_duration > 0 %>
   <div class="card-footer text-muted">
-    2 days ago
+    <%= b.issues_duration %> hours
   </div>
+  <% end %>
 </div>
 <% end %>
 
@@ -99,6 +115,6 @@
   </div>
 </div>
 
-
-<%= link_to 'Edit', edit_sprint_path(@sprint) %> |
-<%= link_to 'Back', sprints_path %>
+<script>
+  $('[data-toggle="tooltip"]').tooltip()
+</script>
