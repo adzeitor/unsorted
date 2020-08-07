@@ -7,14 +7,12 @@ import (
 )
 
 func TestQuickUnionWithPathCompression_Connected(t *testing.T) {
-	t.Skip("Implement WeightedQuickUnion first")
 	ConnectivityTests(t, "quick_union_path_compression_", func(n int) solver {
 		return NewQuickUnionWithPathCompression(n)
 	})
 }
 
 func TestQuickUnionWithPathCompression_root(t *testing.T) {
-	t.Skip("Implement QuickUnion first")
 	qf := NewQuickUnionWithPathCompression(13)
 	// TODO: add ASCII representation
 	qf = []int{

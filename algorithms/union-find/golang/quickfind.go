@@ -6,13 +6,22 @@ package quickfind
 type QuickFind []int
 
 func NewQuickFind(n int) QuickFind {
-	panic("implement me")
+	qf := make(QuickFind, n)
+	for i := 0; i < n; i++ {
+		qf[i] = i
+	}
+	return qf
 }
 
 func (qf QuickFind) Union(node1, node2 int) {
-	panic("implement me")
+	old := qf[node1]
+	for i := range qf {
+		if qf[i] == old {
+			qf[i] = qf[node2]
+		}
+	}
 }
 
 func (qf QuickFind) Connected(node1, node2 int) bool {
-	panic("implement me")
+	return qf[node1] == qf[node2]
 }

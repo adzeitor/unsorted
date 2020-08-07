@@ -5,7 +5,6 @@ import (
 )
 
 func TestWeightedQuickUnionWithPathCompression_Connected(t *testing.T) {
-	t.Skip("Implement WeightedQuickUnion first")
 	ConnectivityTests(t, "weighted_quick_union_", func(n int) solver {
 		return NewWeightedQuickUnionWithPathCompression(n)
 	})

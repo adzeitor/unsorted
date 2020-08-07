@@ -7,7 +7,6 @@ import (
 )
 
 func TestWeightedQuickUnion_Connected(t *testing.T) {
-	t.Skip("Implement QuickUnion first")
 	// Can be false negative, because it depends on implementation.
 	// But it can be very useful for debugging.
 	t.Run("step by step (can be false negative)", func(t *testing.T) {
