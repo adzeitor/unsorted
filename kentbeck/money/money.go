@@ -1,11 +1,13 @@
 package money
 
 type Money struct {
-	amount int
+	amount   int
+	currency string
 }
 
 func (money Money) Equal(other Money) bool {
-	return money.amount == other.amount
+	return money.amount == other.amount &&
+		money.currency == other.currency
 }
 
 type DollarValue struct {
@@ -23,7 +25,8 @@ func (dollar DollarValue) Equal(other DollarValue) bool {
 func Dollar(amount int) DollarValue {
 	return DollarValue{
 		Money: Money{
-			amount: amount,
+			amount:   amount,
+			currency: "USD",
 		},
 	}
 }

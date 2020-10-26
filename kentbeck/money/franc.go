@@ -15,7 +15,8 @@ func (franc FrancValue) Equal(other FrancValue) bool {
 func Franc(amount int) FrancValue {
 	return FrancValue{
 		Money: Money{
-			amount: amount,
+			amount:   amount,
+			currency: "CHF",
 		},
 	}
 }
