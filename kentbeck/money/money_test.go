@@ -21,6 +21,12 @@ func TestDollar_Equal(t *testing.T) {
 	dollarFive := Dollar(5)
 	francFive := Franc(5)
 	assertFalse(t, francFive.Money.Equal(dollarFive.Money))
+
+	moneyFranc := Money{
+		amount:   5,
+		currency: "CHF",
+	}
+	assertTrue(t, moneyFranc.Equal(Franc(5).Money))
 }
 
 func TestMoney_Currency(t *testing.T) {

@@ -10,12 +10,19 @@ func (money Money) Equal(other Money) bool {
 		money.currency == other.currency
 }
 
+func (money Money) Times(n int) Money {
+	return Money{
+		amount:   money.amount * n,
+		currency: money.currency,
+	}
+}
+
 type DollarValue struct {
 	Money
 }
 
 func (dollar DollarValue) Times(n int) DollarValue {
-	return Dollar(dollar.amount * n)
+	return DollarValue{Money: dollar.Money.Times(n)}
 }
 
 func (dollar DollarValue) Equal(other DollarValue) bool {

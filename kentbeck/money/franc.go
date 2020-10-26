@@ -5,7 +5,7 @@ type FrancValue struct {
 }
 
 func (franc FrancValue) Times(n int) FrancValue {
-	return Franc(franc.amount * n)
+	return FrancValue{Money: franc.Money.Times(n)}
 }
 
 func (franc FrancValue) Equal(other FrancValue) bool {
