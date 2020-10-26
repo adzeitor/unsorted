@@ -21,11 +21,3 @@ func assertFalse(t *testing.T, got interface{}) {
 	t.Helper()
 	assert(t, false, got)
 }
-
-type Equaler interface {
-	Equal(other interface{}) bool
-}
-
-func assertEqual(t *testing.T, want, got Equaler) {
-	assertTrue(t, want.Equal(got))
-}

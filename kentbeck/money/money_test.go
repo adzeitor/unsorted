@@ -8,10 +8,10 @@ func TestDollar_Times(t *testing.T) {
 	five := Dollar(5)
 
 	result := five.Times(2)
-	assertEqual(t, Dollar(10), result)
+	assertTrue(t, result.Equal(Dollar(10)))
 
 	result = five.Times(3)
-	assertEqual(t, Dollar(15), result)
+	assertTrue(t, result.Equal(Dollar(15)))
 }
 
 func TestDollar_Equal(t *testing.T) {
