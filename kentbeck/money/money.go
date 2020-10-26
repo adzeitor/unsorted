@@ -1,18 +1,18 @@
 package money
 
 type DollarValue struct {
-	Amount int
+	amount int
 }
 
 func (dollar DollarValue) Times(n int) DollarValue {
-	return Dollar(dollar.Amount * n)
+	return Dollar(dollar.amount * n)
 }
 
 func (dollar DollarValue) Equal(other interface{}) bool {
 	otherDollar := other.(DollarValue)
-	return dollar.Amount == otherDollar.Amount
+	return dollar.amount == otherDollar.amount
 }
 
 func Dollar(amount int) DollarValue {
-	return DollarValue{Amount: amount}
+	return DollarValue{amount: amount}
 }
