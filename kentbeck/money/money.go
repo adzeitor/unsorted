@@ -1,8 +1,14 @@
 package money
 
+import "fmt"
+
 type Money struct {
 	amount   int
 	currency string
+}
+
+func (money Money) String() string {
+	return fmt.Sprintf("%d %s", money.amount, money.currency)
 }
 
 func (money Money) Equal(other Money) bool {
@@ -17,23 +23,16 @@ func (money Money) Times(n int) Money {
 	}
 }
 
-type DollarValue struct {
-	Money
+func Dollar(amount int) Money {
+	return Money{
+		amount:   amount,
+		currency: "USD",
+	}
 }
 
-func (dollar DollarValue) Times(n int) DollarValue {
-	return DollarValue{Money: dollar.Money.Times(n)}
-}
-
-func (dollar DollarValue) Equal(other DollarValue) bool {
-	return dollar.Money.Equal(other.Money)
-}
-
-func Dollar(amount int) DollarValue {
-	return DollarValue{
-		Money: Money{
-			amount:   amount,
-			currency: "USD",
-		},
+func Franc(amount int) Money {
+	return Money{
+		amount:   amount,
+		currency: "CHF",
 	}
 }
