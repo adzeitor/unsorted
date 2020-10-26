@@ -1,6 +1,7 @@
 package money
 
 type Expression interface {
+	Reduce(currency string) Money
 }
 
 type Bank struct {
@@ -11,5 +12,5 @@ func NewBank() Bank {
 }
 
 func (bank *Bank) Reduce(source Expression, toCurrency string) Money {
-	return Dollar(10)
+	return source.Reduce(toCurrency)
 }
