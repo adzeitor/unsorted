@@ -30,8 +30,12 @@ func (money Money) Plus(other Money) Expression {
 	}
 }
 
-func (money Money) Reduce(toCurrency string) Money {
-	return money
+func (money Money) Reduce(bank Bank, toCurrency string) Money {
+	rate := bank.rate(money.currency, toCurrency)
+	return Money{
+		amount:   money.amount / rate,
+		currency: toCurrency,
+	}
 }
 
 func Dollar(amount int) Money {
