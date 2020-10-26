@@ -23,7 +23,7 @@ func (money Money) Times(n int) Money {
 	}
 }
 
-func (money Money) Plus(other Money) Expression {
+func (money Money) Plus(other Expression) Expression {
 	return Sum{
 		augend: money,
 		addend: other,

@@ -42,4 +42,14 @@ func TestMoney_Addition(t *testing.T) {
 		reduced := bank.Reduce(sum, "USD")
 		assertMoney(t, Dollar(10), reduced)
 	})
+
+	t.Run("mixed currency addition", func(t *testing.T) {
+		fiveBucks := Dollar(5)
+		tenFrancs := Franc(10)
+		bank := NewBank()
+		bank.AddRate("CHF", "USD", 2)
+
+		reduced := bank.Reduce(fiveBucks.Plus(tenFrancs), "USD")
+		assertMoney(t, Dollar(10), reduced)
+	})
 }
