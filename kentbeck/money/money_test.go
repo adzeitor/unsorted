@@ -7,8 +7,8 @@ import (
 func TestDollar_Times(t *testing.T) {
 	five := Dollar(5)
 
-	assertMoney(t, Dollar(10), five.Times(2))
-	assertMoney(t, Dollar(15), five.Times(3))
+	assertMoney(t, Dollar(10), five.Times(2).(Money))
+	assertMoney(t, Dollar(15), five.Times(3).(Money))
 }
 
 func TestDollar_Equal(t *testing.T) {

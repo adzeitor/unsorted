@@ -16,7 +16,7 @@ func (money Money) Equal(other Money) bool {
 		money.currency == other.currency
 }
 
-func (money Money) Times(n int) Money {
+func (money Money) Times(n int) Expression {
 	return Money{
 		amount:   money.amount * n,
 		currency: money.currency,
