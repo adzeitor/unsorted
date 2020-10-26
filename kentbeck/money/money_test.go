@@ -32,3 +32,14 @@ func TestMoney_Currency(t *testing.T) {
 	assert(t, "USD", Dollar(1).currency)
 	assert(t, "CHF", Franc(1).currency)
 }
+
+func TestMoney_Addition(t *testing.T) {
+	t.Run("simple addition", func(t *testing.T) {
+		five := Dollar(5)
+		sum := five.Plus(five)
+		bank := NewBank()
+
+		reduced := bank.Reduce(sum, "USD")
+		assertMoney(t, Dollar(10), reduced)
+	})
+}

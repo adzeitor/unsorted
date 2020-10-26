@@ -23,6 +23,13 @@ func (money Money) Times(n int) Money {
 	}
 }
 
+func (money Money) Plus(other Money) Money {
+	return Money{
+		amount:   money.amount + other.amount,
+		currency: money.currency,
+	}
+}
+
 func Dollar(amount int) Money {
 	return Money{
 		amount:   amount,
