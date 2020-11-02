@@ -1,0 +1,2 @@
+Try implementing simple design of sniper bot from GOOS book proposed by Vladimir Khorikov
+article https://enterprisecraftsmanship.com/posts/growing-object-oriented-software-guided-by-tests-without-mocks/
